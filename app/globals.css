@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  background-color: #daffe2
+}
+
+/* 
+primary
+.bg-primary {
+  background-color: #16a34a;
+} */
+
+/* .color-primary {
+  color: #16a34a;
+} */
+
+
+/* secondry
+.bg-secondry {
+  background-color: #8ffba6;
+} */
+
+/* .color-secondry {
+  color: #daffe2;
+} */
+
+.pizza-bar {
+  border-radius: 200px 0 0 200px;
+}
+
+.leaf {
+  left: 15rem;
+}
+
+/* .vector-bg {
+  background-image: url('/Vector.svg');
+  background-size: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 150px;
+  width: 100%;
+} */
+
+/* .header{
+  height: 125px;
+  width: 100%;
+} */
+/* 
+.svg-image{
+ top: -60px;
+ transform: scaleX(-1.5);
+} */
