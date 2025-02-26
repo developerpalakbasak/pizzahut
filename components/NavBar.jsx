@@ -1,22 +1,15 @@
 "use client";
-import React, { useEffect, useRef, useState, useContext } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { FaAngleDown, FaAngleUp, FaShoppingCart } from "react-icons/fa";
 import Menu from "./Menu";
-import { PizzaContext } from "@/context/pizzaContext"; // Import context
 
 const Navbar = () => {
     const cart = 3;
     const [mobileMenuToggle, setMobileMenuToggle] = useState(false);
     const mobileMenuRef = useRef(null);
 
-    // Get pizza data from context
-    const { pizza, loading } = useContext(PizzaContext);
-
-    useEffect(() => {
-        console.log("Pizza Data:", pizza); // Log fetched pizza data
-    }, [pizza]); // Runs when pizza updates
 
     useEffect(() => {
         const handleOutsideClick = (e) => {

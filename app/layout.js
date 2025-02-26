@@ -25,16 +25,16 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}>
 
         {/* Wrap everything inside PizzaProvider */}
-        <PizzaProvider>  
+        <PizzaProvider>
+          
           {/* Navbar Container */}
           <div className="w-full z-10 fixed">
             <Navbar />
           </div>
-
-          {/* Main Content */}
-          <main className="flex-grow mt-20">{children}</main>
-
+            {/* Main Content */}
+            <main className="flex-grow mt-20">{children}</main>
           <Footer />
+
         </PizzaProvider>
 
       </body>

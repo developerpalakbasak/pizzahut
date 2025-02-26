@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { FaShoppingBag } from "react-icons/fa";
 
-const ContentItem = ({name, price}) => {
+const ContentItem = ({id, name, price}) => {
 
 
 // console.log(name)
@@ -24,7 +24,7 @@ const ContentItem = ({name, price}) => {
                 <div className="flex flex-col gap-2 text-xs button">
                     <p className='px-3 py-1 text-black'>Only TK - {price}</p>
                     <button
-                    onClick={()=>console.log("clicked")}
+                    onClick={()=>console.log(id)}
                     className='flex gap-2 px-3 py-1 transition duration-300 bg-secondry items-center hover:bg-green-300 rounded-2xl text-primary'>
                         <FaShoppingBag />
                         Add to cart</button>
