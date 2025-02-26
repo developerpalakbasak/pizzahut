@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 add .env file to root folder
 
-current variable
+current variable:
 
 1. MONGO_URI
 2.
