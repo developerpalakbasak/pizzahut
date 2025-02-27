@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react'
 
-const Menu = () => {
+const DesktopMenuItem = () => {
 
     const path = usePathname();
 
@@ -18,11 +18,10 @@ const Menu = () => {
         <div className="hidden sm:block bg-white rounded-xl">
             <ul className="flex font-semibold justify-center gap-4 px-5 py-2 text-sm rounded-2xl">
                 {links.map(link => (
-                    <li
-                        key={link.path}
-                        className={path === link.path ? "color-primary" : ""}
-                    >
+                    <li key={link.path} className={path === link.path ? "text-primary" : ""} >
+
                         <Link href={link.path}>{link.name} </Link>
+                        
                     </li>
                 ))}
             </ul>
@@ -30,4 +29,4 @@ const Menu = () => {
     )
 }
 
-export default Menu
+export default DesktopMenuItem

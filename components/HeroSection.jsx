@@ -6,15 +6,16 @@ const HeroSection = () => {
     <>
       <div className=' w-[90vw] md:w-[80vw] max-w-6xl mx-auto mt-10'>
 
-        <span className='flex items-center gap-2 px-3 py-1 text-sm text-white rounded-2xl bg-secondry color-primary w-fit'>Serving since 1989
+        <span className='flex items-center gap-2 px-3 py-1 text-sm text-white rounded-2xl bg-primary color-primary w-fit'>Serving since 1989
         </span>
 
-        <div className='relative grid grid-cols-2 mt-8'>
+        <div className='relative flex flex-col sm:grid sm:grid-cols-2 mt-8'>
 
 
           <div className='relative flex flex-col gap-3'>
+            <div className='flex flex-col gap-3 m-auto'>
             <Image
-              className='absolute leaf top-6'
+              className=' hidden sm:block absolute leaf top-6'
               src="/leaf.png"
               width={50}
               height={50}
@@ -26,11 +27,12 @@ const HeroSection = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit.<br />
               Harum laboriosam mollitia illo maxime corrupti sint.
             </p>
-            <div className="flex gap-3 text-sm button">
+            </div>
+            <div className="flex justify-center sm:justify-normal gap-3 text-sm button">
               <button className='px-3 py-1 text-white transition duration-300 hover:bg-green-300 hover:text-primary rounded-2xl bg-primary'>Order Now</button>
               <button className='px-3 py-1 transition duration-300 bg-white hover:bg-green-300 rounded-2xl hover:text-primary color-primary'>All Menu</button>
             </div>
-            <div>
+            <div className='flex justify-center sm:justify-normal'>
               <Image
                 src="/pizza-slice.png"
                 width={200}
@@ -41,7 +43,7 @@ const HeroSection = () => {
           </div>
 
 
-          <div className=''>
+          <div className='hidden sm:block'>
             <img width={150} height={150} className='absolute xl:left-[38rem] left-[16rem] -top-[5rem]' src="/leafs.png" alt="" />
             <div className='absolute w-full h-[90%] bg-green-600 pizza-bar'>
               <Image

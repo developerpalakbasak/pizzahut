@@ -1,14 +1,26 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import ContentItem from './ContentItem'
 import { usePizza } from '@/context/pizzaContext';
+import { useCart } from '@/context/cartContext';
+
 
 
 const BestSellings = () => {
 
          const { pizzaInfo, loading }= usePizza()
+         const {addToCart} = useCart()
 
          const allPizza = pizzaInfo.allPizza;
+         const { cart } = useCart();
+
+
+    //        // Log the cart only when it updates
+    // useEffect(() => {
+    //     // console.log("Cart updated:", cart);
+    // }, [cart]); // Logs only when `cart` changes
+
+
 
         //  console.log(allPizza[0]._id)
         //  console.log(loading)
@@ -34,7 +46,7 @@ const BestSellings = () => {
           {loading?<>
           <h1>Loading...</h1>
           </>: allPizza.map((pizza, index) => {
-                return <ContentItem key={index} id={pizza._id} name={pizza.title} price={pizza.price} />;
+                return <ContentItem key={index} id={pizza._id} name={pizza.title} price={pizza.price} addToCart={addToCart} />;
             })}
          
         </div>
