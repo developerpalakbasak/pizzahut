@@ -15,10 +15,10 @@ const DesktopMenuItem = () => {
     ];
 
     return (
-        <div className="hidden sm:block bg-white rounded-xl">
+        <div className=" bg-white rounded-xl">
             <ul className="flex font-semibold justify-center gap-4 px-5 py-2 text-sm rounded-2xl">
                 {links.map(link => (
-                    <li key={link.path} className={path === link.path ? "text-primary" : ""} >
+                    <li key={link.path} className={path === link.path ? "text-primary" : " hover:text-primary"} >
 
                         <Link href={link.path}>{link.name} </Link>
                         

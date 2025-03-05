@@ -5,9 +5,15 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([
-        { id: '67bea01f5ffad97324a715d5', name: 'pizza-1', price: 100, amount: 3 },
-        { id: '67bea0275ffad97324a715d7', name: 'pizza-2', price: 200, amount: 1 }
+        {id: '67c020443d41d8eee581f250', name: 'pizza-2', price: 700, quantity: 2}
+       
     ]);
+
+    const [selected, setSelected] = useState([
+        
+    ])
+
+    const [selectedPizzaTotalPrice, setSelectedPizzaTotalPrice] = useState(0)
 
 
     // add to cart context 
@@ -15,15 +21,15 @@ export const CartProvider = ({ children }) => {
         setCart((prevCart) => {
             const existingItem = prevCart.find((item) => item.id === id);
             if (existingItem) {
-                // Increment amount if the item already exists
+                // Increment quantity if the item already exists
                 return prevCart.map((item) =>
                     item.id === id
-                        ? { ...item, amount: item.amount + 1 }
+                        ? { ...item, quantity: item.quantity + 1 }
                         : item
                 );
             } else {
-                // Add new item with amount = 1
-                return [...prevCart, { id, name, price, amount: 1 }];
+                // Add new item with quantity = 1
+                return [...prevCart, { id, name, price, quantity: 1 }];
             }
         });
     };
@@ -34,8 +40,8 @@ export const CartProvider = ({ children }) => {
 
 
             return prevCart.map((item) =>
-                (item.id === id && item.amount > 1)
-                    ? { ...item, amount: item.amount - 1 }
+                (item.id === id && item.quantity > 1)
+                    ? { ...item, quantity: item.quantity - 1 }
                     : item
             );
 
@@ -45,19 +51,24 @@ export const CartProvider = ({ children }) => {
     // remove item from cart 
     const removeItemFromCart = (id) => {
         setCart((prevCart) => {
-               return prevCart.filter((item) => item.id !== id);
+            return prevCart.filter((item) => item.id !== id);
         });
     };
 
+    const selectedFromCart =  cart.filter((item) => selected.includes(item.id));
 
 
     const clearCart = () => {
         setCart([]);
     };
 
+    // const selectCart = () => {
+    //     setSelected([]);
+    // };
+
     return (
         <CartContext.Provider
-            value={{ cart, addToCart, removeFromCart, removeItemFromCart, clearCart }}
+            value={{ cart, addToCart, removeFromCart, removeItemFromCart, clearCart, selected, setSelected,selectedFromCart, selectedPizzaTotalPrice, setSelectedPizzaTotalPrice }}
         >
             {children}
         </CartContext.Provider>

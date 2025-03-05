@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.0",
-    "axios": "^1.7.9",
+    "axios": "^1.8.1",
     "mongoose": "^8.10.2",
     "next": "15.1.7",
     "react": "^19.0.0",

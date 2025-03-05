@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import { createContext, useState, useEffect, useContext } from "react";
 
 export const PizzaContext = createContext();
@@ -10,12 +11,8 @@ export const PizzaProvider = ({ children }) => {
     useEffect(() => {
         const fetchPizzaData = async () => { 
             try {
-                const res = await fetch("/api/pizza");
-                if (!res.ok) throw new Error("Failed to fetch pizza data");
-                const data = await res.json();
-                setPizzaInfo(data);
-
-                // console.log(data)
+                const res = await axios.get("/api/pizza");
+                setPizzaInfo(res.data); // Access response data directly
             } catch (error) {
                 console.error(error.message);
             } finally {

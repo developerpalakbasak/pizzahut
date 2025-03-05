@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
               <Navbar />
             </div>
             {/* Main Content */}
-            <main className="flex-grow mt-20">{children}</main>
+            <main className="flex-grow ">{children}</main>
             <Footer />
 
           </CartProvider>

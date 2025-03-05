@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  background-color: #daffe2
+}
+
+.size-10 {
+  height: 2.25rem;
+  width: 2.25rem;
+}

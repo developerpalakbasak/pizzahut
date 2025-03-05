@@ -1,5 +1,7 @@
 import { ConnectDB } from "@/lib/config/db";
 import PizzaModel from "@/lib/models/pizzaModel";
+import { writeFile } from "fs/promises";
+import fs from "fs";
 const { NextResponse } = require("next/server");
 
 
@@ -23,25 +25,40 @@ export async function GET(request) {
 
 // api endpoint to get add pizza
 export async function POST(request) {
+    try {
+        const formData = await request.formData();
+        const timestamp = Date.now();
 
-    const {title, description, category, price} = await request.json();
+        const image = formData.get('image');
+        if (!image) {
+            return NextResponse.json({ success: false, msg: "Image is required" }, { status: 400 });
+        }
 
-    const pizzaData = {
-        title,
-        description,
-        category,
-        price
+        const imageByteData = await image.arrayBuffer();
+        const buffer = Buffer.from(imageByteData);
+        const path = `./public/${timestamp}_${image.name}`;
+        await writeFile(path, buffer);
+        const imgUrl = `/${timestamp}_${image.name}`;
+
+        const pizzaData = {
+            title: formData.get('title'),
+            price: formData.get('price'),
+            description: formData.get('description'),
+            category: formData.get('category'),
+            image: imgUrl,
+
+        };
+
+        console.log(pizzaData)
+        await PizzaModel.create(pizzaData);
+        console.log('Pizza saved:', pizzaData);
+
+        return NextResponse.json({ success: true, msg: "Pizza added" });
+    } catch (error) {
+        console.error('Error saving pizza:', error);
+        return NextResponse.json({ success: false, msg: "Internal Server Error" }, { status: 500 });
     }
-    
-    await PizzaModel.create(pizzaData);
-    console.log("created")
-
-    return NextResponse.json({ success: true, pizzaData })
-
-
-
 }
-
 
 // api endpoint to update isTopSelling and isFeature
 export async function PUT(request) {

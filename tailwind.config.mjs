@@ -17,12 +17,15 @@ export default {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
         backgroundColor:{
-        "secondry" : "#8ffba6",
+        "secondary" : "#8ffba6",
         "primary" : "#16a34a"
         },
         textColor:{
         "primary" : "#16a34a",
         "secondary" : "#daffe2",
+        },
+        borderColor:{
+          "primary" : "#16a34a"
         }
     },
   },

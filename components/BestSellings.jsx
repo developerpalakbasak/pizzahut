@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ContentItem from './ContentItem'
 import { usePizza } from '@/context/pizzaContext';
 import { useCart } from '@/context/cartContext';
@@ -8,11 +8,16 @@ import { useCart } from '@/context/cartContext';
 
 const BestSellings = () => {
 
-         const { pizzaInfo, loading }= usePizza()
-         const {addToCart} = useCart()
+    const { pizzaInfo, loading } = usePizza()
+    const { addToCart } = useCart()
 
-         const allPizza = pizzaInfo.allPizza;
-         const { cart } = useCart();
+    const allPizza = pizzaInfo.allPizza;
+
+    // console.log(allPizza)
+
+    // const [category, setCategory] = useState("All")
+
+    const [showTopRated, setShowTopRated] = useState(false);
 
 
     //        // Log the cart only when it updates
@@ -22,8 +27,8 @@ const BestSellings = () => {
 
 
 
-        //  console.log(allPizza[0]._id)
-        //  console.log(loading)
+    //  console.log(allPizza[0]._id)
+    //  console.log(loading)
 
     // const allPizza = [
     //     { id: 1, title: "delicious pizza-1", price: 100 },
@@ -42,14 +47,38 @@ const BestSellings = () => {
 
 
     return (
-        <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'> 
-          {loading?<>
+        <>
+            <div className=' flex justify-center'>
+                <div className='bg-white rounded font-semibold w-36 flex gap-3 px-3 py-2 justify-center mx-0'>
+                    <button className={!showTopRated ? "text-primary" : ""} onClick={() => setShowTopRated(false)} >All</button>
+                    <button className={showTopRated ? "text-primary" : ""} onClick={() => setShowTopRated(true)} >Top Sellings</button>
+                </div>
+            </div>
+            <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+
+            {loading ? (
           <h1>Loading...</h1>
-          </>: allPizza.map((pizza, index) => {
-                return <ContentItem key={index} id={pizza._id} name={pizza.title} price={pizza.price} addToCart={addToCart} />;
-            })}
-         
-        </div>
+        ) : (
+          allPizza
+            .filter((pizza) => (showTopRated ? pizza.isTopSelling : true)) // Filter based on selection
+            .map((pizza, index) => (
+              <ContentItem
+                key={index}
+                id={pizza._id}
+                name={pizza.title}
+                description={pizza.description}
+                price={pizza.price}
+                category={pizza.category}
+                image={pizza.image}
+                addToCart={addToCart}
+              />
+            ))
+        )}
+
+
+            </div>
+        </>
+
     )
 }
 
