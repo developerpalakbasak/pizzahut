@@ -23,18 +23,18 @@ export default function AdminLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}>
-<PizzaProvider>
-       <div>
-        <ToastContainer/>
-        <AdminNavBar/>
-       </div>
-            {/* Main Content */}
-            <main className="w-[90vw] md:w-[80vw] max-w-6xl pb-5 mx-auto flex flex-col mt-20 h-[150vh]">              
-              
-              {children}
-              </main>
-          
-</PizzaProvider>
+        <PizzaProvider>
+          <div>
+            <ToastContainer />
+            <AdminNavBar />
+          </div>
+          {/* Main Content */}
+          <main className="w-[90vw] md:w-[80vw] max-w-6xl pb-5 mx-auto flex flex-col mt-20">
+
+            {children}
+          </main>
+
+        </PizzaProvider>
       </body>
     </html>
   );

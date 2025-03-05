@@ -11,3 +11,9 @@ body {
   height: 2.25rem;
   width: 2.25rem;
 }
+.inset-0 {
+  inset: 0px;
+}
+.justify-end {
+  justify-content: flex-end;
+}

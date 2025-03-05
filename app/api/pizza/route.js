@@ -23,7 +23,7 @@ export async function GET(request) {
 
 }
 
-// api endpoint to get add pizza
+// api endpoint to add pizza
 export async function POST(request) {
     try {
         const formData = await request.formData();
@@ -36,9 +36,9 @@ export async function POST(request) {
 
         const imageByteData = await image.arrayBuffer();
         const buffer = Buffer.from(imageByteData);
-        const path = `./public/${timestamp}_${image.name}`;
+        const path = `./public/${image.name}_${timestamp}`;
         await writeFile(path, buffer);
-        const imgUrl = `/${timestamp}_${image.name}`;
+        const imgUrl = `/${image.name}_${timestamp}`;
 
         const pizzaData = {
             title: formData.get('title'),
@@ -49,9 +49,9 @@ export async function POST(request) {
 
         };
 
-        console.log(pizzaData)
+        // console.log(pizzaData)
         await PizzaModel.create(pizzaData);
-        console.log('Pizza saved:', pizzaData);
+        // console.log('Pizza saved:', pizzaData);
 
         return NextResponse.json({ success: true, msg: "Pizza added" });
     } catch (error) {
@@ -90,4 +90,27 @@ export async function PUT(request) {
         console.error("Error updating pizza:", error);
         return NextResponse.json({ success: false, message: "Failed to update pizza", error: error.message }, { status: 500 });
     }
+}
+
+
+
+// api endpoint to delete pizza
+export async function DELETE(request) {
+    const id = await request.nextUrl.searchParams.get('id');
+    const blog = await PizzaModel.findById(id);
+
+    if (!blog) {
+
+        return NextResponse.json({ msg: "item not found" });
+    }
+
+
+
+    // delete from database
+    await PizzaModel.findByIdAndDelete(id);
+
+    // delete image from public folder
+    fs.unlink(`./public/${blog.image}`, ()=>{ });
+
+    return NextResponse.json({ msg: "Pizza deleted" });
 }

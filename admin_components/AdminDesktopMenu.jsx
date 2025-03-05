@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 const AdminDesktopMenu = () => {
   const path = usePathname();
 
-  console.log(path)
+  // console.log(path)
 
   return (
     <>
