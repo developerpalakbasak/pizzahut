@@ -9,6 +9,8 @@ import { useCart } from "@/context/cartContext";
 import MobileMenu from "./MobileMenu";
 import DesktopMenu from "./DesktopMenu";
 import DesktopMenuItem from "./DesktopMenuItem";
+import { RxAvatar } from "react-icons/rx";
+
 
 const Navbar = () => {
 
@@ -36,23 +38,38 @@ const Navbar = () => {
                     <DesktopMenuItem />
                 </div>
 
-                <Link href="/cart">
+                <div className="flex gap-3">
+                    <Link href="/account">
 
-                    <div className="relative rounded-[0.50rem] px-2 py-1 bg-primary flex items-center">
-                        {/* Cart Icon Button */}
-                        <button className="relative transition duration-300 px-1 py-1 ">
-                            <FaShoppingCart color="white" size={20} />
-                        </button>
+                        <div className="relative rounded-[0.50rem] px-2 py-1 bg-primary flex items-center">
 
-                        {/* Amount Badge */}
-                       
+                            <button className="relative transition duration-300 px-1 py-1 ">
+                                <RxAvatar color="white" size={20} />
+                            </button>
+
+
+                        </div>
+
+                    </Link>
+                    <Link href="/cart">
+
+                        <div className="relative rounded-[0.50rem] px-2 py-1 bg-primary flex items-center">
+                            {/* Cart Icon Button */}
+                            <button className="relative transition duration-300 px-1 py-1 ">
+                                <FaShoppingCart color="white" size={20} />
+                            </button>
+
+                            {/* Amount Badge */}
+
                             <span className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow">
                                 {cart.length}
                             </span>
-    
-                    </div>
 
-                </Link>
+                        </div>
+
+                    </Link>
+                </div>
+
 
 
             </div>

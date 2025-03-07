@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { PizzaProvider } from "@/context/pizzaContext";
 import { CartProvider } from "@/context/cartContext";
 import { ToastContainer } from "react-toastify";
+import { UserProvider } from "@/context/userContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,17 +30,18 @@ export default function RootLayout({ children }) {
         {/* Wrap everything inside PizzaProvider */}
         <PizzaProvider>
           <CartProvider>
-            <ToastContainer />
+            <UserProvider>
+              <ToastContainer />
 
 
-            {/* Navbar Container */}
-            <div className="w-full z-10 fixed">
-              <Navbar />
-            </div>
-            {/* Main Content */}
-            <main className="flex-grow ">{children}</main>
-            <Footer />
-
+              {/* Navbar Container */}
+              <div className="w-full z-10 fixed">
+                <Navbar />
+              </div>
+              {/* Main Content */}
+              <main className="flex-grow ">{children}</main>
+              <Footer />
+            </UserProvider>
           </CartProvider>
         </PizzaProvider>
 

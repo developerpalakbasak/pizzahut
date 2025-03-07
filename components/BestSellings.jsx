@@ -68,6 +68,7 @@ const BestSellings = () => {
                 name={pizza.title}
                 description={pizza.description}
                 price={pizza.price}
+                stock={pizza.stock}
                 category={pizza.category}
                 image={pizza.image}
                 addToCart={addToCart}

@@ -3,13 +3,17 @@
 import { useCart } from "@/context/cartContext";
 import axios from "axios";
 import React, { useState } from "react";
-import { useRouter } from "next/navigation"; // Updated import
+import { useRouter } from "next/navigation";
+import { usePizza } from '@/context/pizzaContext';
+
 
 const Page = () => {
   const router = useRouter();
+  const { fetchPizzaData } = usePizza()
+
 
   const { selectedPizzaTotalPrice, selectedFromCart } = useCart();
-// console.log(selectedFromCart)
+  // console.log(selectedFromCart)
 
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -21,7 +25,7 @@ const Page = () => {
     const data = {
       firstName: formElements.firstName.value,
       lastName: formElements.lastName.value,
-      email: formElements.email.value,
+      // email: formElements.email.value,
       phone: formElements.phone.value,
       address: formElements.address.value,
       city: formElements.city.value,
@@ -40,16 +44,27 @@ const Page = () => {
         },
       });
 
-      console.log(res.data)
+      selectedFromCart.map(async (item) => {
 
-      // Navigate to another page with the response data
-      // router.push(
-      //   `/cart/checkout/payment?responseData=${encodeURIComponent(
-      //     JSON.stringify(res.data)
-      //   )}`
-      // );
+        const data = {
+          id: item.id,
+          orderedItem: item.quantity
+        }
+        await axios.put("/api/pizza", data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
 
+      })
 
+      if (res.data.success) {
+        router.push(
+          "/cart/checkout/paymentsuccess"
+        );
+      }
+
+      fetchPizzaData()
 
     } catch (error) {
       setErrorMessage(
@@ -61,7 +76,9 @@ const Page = () => {
     }
   };
 
+
   return (
+
     <div className="mt-28 flex items-center justify-center">
       <form
         onSubmit={handleSubmit}
@@ -103,7 +120,7 @@ const Page = () => {
               required
             />
           </div>
-          <div>
+          {/* <div>
             <label
               htmlFor="email"
               className="block text-sm font-medium text-gray-700"
@@ -118,7 +135,7 @@ const Page = () => {
               placeholder="john.doe@example.com"
               required
             />
-          </div>
+          </div> */}
           <div>
             <label
               htmlFor="phone"
@@ -196,11 +213,10 @@ const Page = () => {
           <button
             type="submit"
             disabled={submitting}
-            className={`py-2 px-4 rounded-md text-white transition-colors duration-300 ${
-              submitting
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-primary hover:bg-secondary hover:text-primary"
-            }`}
+            className={`py-2 px-4 rounded-md text-white transition-colors duration-300 ${submitting
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-primary hover:bg-secondary hover:text-primary"
+              }`}
           >
             {submitting ? "Processing..." : "Complete Order"}
           </button>

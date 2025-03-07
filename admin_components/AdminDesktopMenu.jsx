@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { MdAddBox } from 'react-icons/md';
 import { FaRegEdit } from 'react-icons/fa';
 import { LuNotepadText } from 'react-icons/lu';
+import { MdSpaceDashboard } from "react-icons/md";
 
 import { usePathname } from 'next/navigation';
 
@@ -15,6 +16,17 @@ const AdminDesktopMenu = () => {
     <>
       <div>
         <ul className="flex items-center gap-5">
+
+          {/* Dashboard Link */}
+          <li >
+            <Link href="/admin" className="w-full h-full flex items-center justify-center">
+              <span className={`flex items-center justify-center size-10 p-2 rounded-md ${path == "/admin" ? "text-white bg-primary" : " bg-white "} `}>
+                <MdSpaceDashboard size={28} className="" />
+              </span>
+            </Link>
+
+          </li>
+
           {/* Add Products Link */}
           <li >
             <Link href="/admin/addproducts" className="w-full h-full flex items-center justify-center">

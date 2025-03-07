@@ -5,51 +5,27 @@ import React, { useContext, useEffect, useState } from 'react'
 import { MdDelete } from "react-icons/md";
 import Link from 'next/link';
 
+
+
 const cart = () => {
 
 
-  // Usecontext 
-  // Get pizza data from context
-
-  // const { pizza, loading } = useContext(PizzaContext);
-  // const { pizzaInfo } = usePizza()
   const { cart, addToCart, removeFromCart, removeItemFromCart, selected, setSelected,selectedFromCart, selectedPizzaTotalPrice, setSelectedPizzaTotalPrice } = useCart()
 
-  // console.log(selectedPizzaTotalPrice)
-  // console.log(selected)
-  // const [selected, setSelected] = useState([])
-
-  // const [selectedPizzaTotalPrice, setselectedPizzaTotalPrice] = useState()
 
 
   useEffect(() => {
-    // Find matching IDs between cart and selected
-    // const selectedIds = selected.map(item => item.id);
-
-    // const matched = cart.filter((item) => selected.includes(item.id));
    
     const matched = selectedFromCart
-    
-    // console.log(cart)
-    // console.log(selected)
-    // console.log(matched);
-
+  
     // Calculate total amount for the matched items
     const totalSelectedAmount = matched.reduce((total, item) => {
       return total + item.quantity * item.price;
     }, 0);
 
-    // console.log(totalSelectedAmount);
-
-    // Update the state with the recalculated total
+  // Update the state with the recalculated total
     setSelectedPizzaTotalPrice(totalSelectedAmount);
   }, [cart, selected]);
-
-
-  // console.log(selectedPizzaTotalPrice)
-
-
-  // const totalAmountInCart = cart.reduce((total, item) => total + item.amount * item.price, 0);
 
 
 
@@ -72,9 +48,6 @@ const cart = () => {
 
     };
   }
-
-  // Calculate total amount dynamically
-  // console.log(selectedPizzaTotalPrice)
 
 
   return (

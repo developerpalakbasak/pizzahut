@@ -5,7 +5,6 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([
-        {id: '67c020443d41d8eee581f250', name: 'pizza-2', price: 700, quantity: 2}
        
     ]);
 

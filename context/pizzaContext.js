@@ -15,6 +15,7 @@ export const PizzaProvider = ({ children }) => {
         try {
             const res = await axios.get("/api/order");
             setPizzaOrders(res.data); // Access response data directly
+            
         } catch (error) {
             console.error(error.message);
         }
@@ -37,6 +38,7 @@ export const PizzaProvider = ({ children }) => {
 
         fetchOrders()
         fetchPizzaData();
+        
     }, []);
 
     return (

@@ -15,6 +15,7 @@ const page = () => {
     price: "",
     description: "",
     category: "rounded",
+    stock: ""
   })
 
   const onChangeHandler = (event) => {
@@ -36,6 +37,8 @@ const page = () => {
     formData.append('description', data.description);
     formData.append('category', data.category);
     formData.append('image', image);
+    formData.append('stock', data.stock);
+  
 
     // console.log("FormData:", Object.fromEntries(formData.entries()));
 
@@ -51,6 +54,7 @@ const page = () => {
         title: "",
         price: "",
         description: "",
+        stock:"",
         category: "rounded",
       })
     } else {
@@ -71,7 +75,7 @@ const page = () => {
       <form onSubmit={onSubmitHandler} className='pt-5 px-5 sm:pt-12 sm:pl-16'>
 
         <p className='text-xl'>Upload image</p>
-        <label htmlFor="image" className='inline-block'>
+        <label htmlFor="image" className='inline-block cursor-pointer'>
           <Image src={!image ? assets.upload_area : URL.createObjectURL(image)} width={140} height={70} alt='inputImg' />
         <input onChange={(e) => setImage(e.target.files[0])} type="file" id="image" hidden />
         </label>
@@ -84,6 +88,10 @@ const page = () => {
 
         <p className='text-xl mt-4'>Pizza Price</p>
         <input name='price' onChange={onChangeHandler} value={data.price} className='w-full sm:w-[500px] mt-4 px-4 py-3 border' type="number" placeholder='Price here' required />
+
+
+        <p className='text-xl mt-4'>Stocks</p>
+        <input name='stock' onChange={onChangeHandler} value={data.stock} className='w-full sm:w-[500px] mt-4 px-4 py-3 border' type="number" placeholder='Enter the Stock' required />
 
 
         <p className='text-xl mt-4'>Pizza description</p>
