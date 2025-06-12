@@ -21,12 +21,14 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "PizzaHut",
   description: "Developed By developerpalakbasak",
+  other: {
+    'google-site-verification': 'GBI_cQp8BDdFm38fP1Oov5p8BPRn_tyK8EKXGoyK2Ow',
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <meta name="google-site-verification" content="GBI_cQp8BDdFm38fP1Oov5p8BPRn_tyK8EKXGoyK2Ow" />
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-[#daffe2]`}>
 
         {/* Wrap everything inside PizzaProvider */}
